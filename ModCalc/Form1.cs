@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 namespace ModCalc
@@ -15,24 +16,58 @@ namespace ModCalc
             return CSharpScript.EvaluateAsync<double>(expression).Result;
         }
 
+        int modInverse(int a, int n)
+        {
+            int i = n, v = 0, d = 1;
+            while (a > 0)
+            {
+                int t = i / a, x = a;
+                a = i % x;
+                i = x;
+                x = d;
+                d = v - t * x;
+                v = x;
+            }
+            v %= n;
+            if (v < 0) 
+                v = (v + n) % n;
+            return v;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            int mod = Convert.ToInt32(textBox2.Text);
-            string subjectString = textBox1.Text;
-            
-                Regex regexObj = new Regex("[0-9]+(?=/1)", RegexOptions.IgnoreCase);
-                Match matchResults = regexObj.Match(subjectString);
-                int negative = Convert.ToInt32(matchResults.Value);
-            int x=0, y=0;
-            do
-            {
-                x++;
-                y++;
-            }
-            while ((x*negative+y*mod==1)|| (x * negative - y * mod == 1));
-            textBox3.Text = Convert.ToString(x);
 
-                //Match newStrign = Regex.Replace()
+            //string subjectString = textBox1.Text;
+
+            //Regex regexObj = new Regex("[0-9]+(?=/1)", RegexOptions.IgnoreCase);
+            //Match matchResults = regexObj.Match(subjectString);
+            //int negative = Convert.ToInt32(matchResults.Value);
+            //int x = 0, y = 0;
+
+            int a = 2, n = 3;
+            Console.WriteLine(modInverse(a, n));
+
+
+
+
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    for (int j = 0; j < 1000; j++)
+            //    {
+
+            //        x++;
+            //        y++;
+
+
+            //    }
+            //    if ((x * negative + y * mod == 1) || (x * negative - y * mod == 1))
+            //        break;
+            //}
+
+
+            //textBox3.Text = Convert.ToString(x);
+
+            //Match newStrign = Regex.Replace()
 
 
 
@@ -43,14 +78,18 @@ namespace ModCalc
 
             //textBox3.Text = m.Value;
 
-            //string equasion = Convert.ToString(Parse(textBox1.Text));
-            
 
-            //textBox3.Text = equasion + mod;
-            //int equation = Convert.ToInt32(textBox1.Text);
+            //done
+            ////int equasion = Convert.ToInt32(Parse(textBox1.Text));
+            ////int mod = Convert.ToInt32(textBox2.Text);
 
-            //int answer = equation + mod;
-            //textBox3.Text = answer.ToString();
+
+
+            ////textBox3.Text = Convert.ToString(equasion + mod);
+            ////int answer = equasion + mod;
+            ////textBox3.Text = answer.ToString();
         }
+        
+
     }
     } 
