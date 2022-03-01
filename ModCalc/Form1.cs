@@ -47,29 +47,39 @@ namespace ModCalc
 
             string subjectString = textBox1.Text;
 
-
-            Regex Inverse = new Regex("(?<=1/)[0-9]+", RegexOptions.IgnoreCase);
-            Match matchInverse = Inverse.Match(subjectString);
-            if (matchInverse.Success)
+            if (IsPrime(mod) == true)
             {
-                Regex Expression = new Regex("(1/)[0-9]+", RegexOptions.IgnoreCase);
+                Regex Inverse = new Regex("(?<=1/)[0-9]+", RegexOptions.IgnoreCase);
+                Match matchInverse = Inverse.Match(subjectString);
+                if (matchInverse.Success)
+                {
+                    Regex Expression = new Regex("(1/)[0-9]+", RegexOptions.IgnoreCase);
 
-                string non = Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod));
-                string buffer = Expression.Replace(subjectString, Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod)));
-                int intbuffer = Convert.ToInt32(Evaluate(buffer));
+                    string non = Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod));
+                    string buffer = Expression.Replace(subjectString, Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod)));
+                    int intbuffer = Convert.ToInt32(Evaluate(buffer));
 
-                if (non == "999999")
-                    textBox3.Text = "Обратного нет";
+                    if (non == "999999")
+                        textBox3.Text = "Обратного нет";
+                    else
+                        textBox3.Text = Convert.ToString(modulo(intbuffer, mod));
+                }
+
                 else
-                    textBox3.Text = Convert.ToString(modulo(intbuffer, mod));
+                {
+                    textBox3.Text = Convert.ToString(modulo(equasion, mod));
+                }
             }
-            //textBox3.Text = Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod));
 
             else
             {
-                textBox3.Text = Convert.ToString(modulo(equasion, mod));
+                MessageBox.Show("Введите корректный модуль");
+                textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 1);
+                textBox2.Focus();
+                textBox2.SelectionStart = textBox2.Text.Length;
             }
         }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -91,9 +101,17 @@ namespace ModCalc
                 textBox2.Focus();
                 textBox2.SelectionStart = textBox2.Text.Length;
             }
+
         }
 
+        public static bool IsPrime(int num)
+        {
+            if (num == 0) return false;
+            for (int i = 2; i < num; i++)
+                if (num % i == 0)
+                    return false;
+            return true;
+        }
     }
-
 
 }
