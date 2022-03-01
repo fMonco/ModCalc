@@ -25,6 +25,12 @@ namespace ModCalc
             return double.Parse((string)row["expression"]);
         }
 
+        int modulo(int a, int m)
+        {
+            int r = a % m;
+            return r < 0 ? r + m : r;
+        }
+
         static int modInverse(int a, int m)
         {
             for (int x = 1; x < m; x++)
@@ -39,8 +45,8 @@ namespace ModCalc
             int mod = Convert.ToInt32(textBox2.Text);
 
 
-
             string subjectString = textBox1.Text;
+
 
             Regex Inverse = new Regex("(?<=1/)[0-9]+", RegexOptions.IgnoreCase);
             Match matchInverse = Inverse.Match(subjectString);
@@ -55,13 +61,13 @@ namespace ModCalc
                 if (non == "999999")
                     textBox3.Text = "Обратного нет";
                 else
-                    textBox3.Text = Convert.ToString(intbuffer % mod);
+                    textBox3.Text = Convert.ToString(modulo(intbuffer, mod));
             }
             //textBox3.Text = Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod));
 
             else
             {
-                textBox3.Text = Convert.ToString(equasion % mod);
+                textBox3.Text = Convert.ToString(modulo(equasion, mod));
             }
         }
 
@@ -86,6 +92,7 @@ namespace ModCalc
                 textBox2.SelectionStart = textBox2.Text.Length;
             }
         }
+
     }
 
 
