@@ -32,11 +32,6 @@ namespace ModCalc
                     return x;
             return 999999;
         }
-        int modulo(int a, int m)
-        {
-            int r = a % m;
-            return r < 0 ? r + m : r;
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -60,13 +55,13 @@ namespace ModCalc
                 if (non == "999999")
                     textBox3.Text = "Обратного нет";
                 else
-                    textBox3.Text = Convert.ToString(modulo(intbuffer, mod));
+                    textBox3.Text = Convert.ToString(intbuffer % mod);
             }
             //textBox3.Text = Convert.ToString(modInverse(Convert.ToInt32(matchInverse.Groups[0].Value), mod));
 
             else
             {
-                textBox3.Text = Convert.ToString(modulo(equasion, mod));
+                textBox3.Text = Convert.ToString(equasion % mod);
             }
         }
 
