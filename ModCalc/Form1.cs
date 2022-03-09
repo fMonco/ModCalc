@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 namespace ModCalc
@@ -60,7 +60,7 @@ namespace ModCalc
                     int intbuffer = Convert.ToInt32(Evaluate(buffer));
 
                     if (non == "999999")
-                        textBox3.Text = "Обратного нет";
+                        textBox3.Text = "РћР±СЂР°С‚РЅРѕРіРѕ РЅРµС‚";
                     else
                         textBox3.Text = Convert.ToString(modulo(intbuffer, mod));
                 }
@@ -73,7 +73,7 @@ namespace ModCalc
 
             else
             {
-                MessageBox.Show("Введите корректный модуль");
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ РјРѕРґСѓР»СЊ");
                 textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 1);
                 textBox2.Focus();
                 textBox2.SelectionStart = textBox2.Text.Length;
@@ -85,7 +85,7 @@ namespace ModCalc
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(textBox1.Text, "[^0-9/+*-]"))
             {
-                MessageBox.Show("Введите корректное выражение");
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ");
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
                 textBox1.Focus();
                 textBox1.SelectionStart = textBox1.Text.Length;
@@ -96,7 +96,7 @@ namespace ModCalc
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(textBox2.Text, "[^0-9]"))
             {
-                MessageBox.Show("Введите корректный модуль");
+                MessageBox.Show("Р’РІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Р№ РјРѕРґСѓР»СЊ");
                 textBox2.Text = textBox2.Text.Remove(textBox2.Text.Length - 1);
                 textBox2.Focus();
                 textBox2.SelectionStart = textBox2.Text.Length;
